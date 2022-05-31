@@ -33,27 +33,31 @@ import './App.css';
 //     }
 // }
 //
-//
-//         return (
-//             <Container>
-//                 <div className="slider w-50 m-auto">
-//                     <img className="d-block w-100" src="https://www.planetware.com/wpimages/2020/02/france-in-pictures-beautiful-places-to-photograph-eiffel-tower.jpg" alt="slide" />
-//                     <div className="text-center mt-5">Active slide {slide} <br/> {autoplay ? 'auto' : null}</div>
-//                     <div className="buttons mt-3">
-//                         <button
-//                             className="btn btn-primary me-2"
-//                             onClick={() => this.changeSlide(-1)}>-1</button>
-//                         <button
-//                             className="btn btn-primary me-2"
-//                             onClick={() => this.changeSlide(1)}>+1</button>
-//                         <button
-//                             className="btn btn-primary me-2"
-//                             onClick={this.toggleAutoplay}>toggle autoplay</button>
-//                     </div>
-//                 </div>
-//             </Container>
-//         )
-//
+
+const [text, setText] = useState('');
+
+const myRef = useRef(1);
+
+        return (
+            <Container>
+                <div className="slider w-50 m-auto">
+                    <img className="d-block w-100" src="https://www.planetware.com/wpimages/2020/02/france-in-pictures-beautiful-places-to-photograph-eiffel-tower.jpg" alt="slide" />
+                    <div className="text-center mt-5">Active slide {slide} <br/> {autoplay ? 'auto' : null}</div>
+                    <div className="buttons mt-3">
+                        <button
+                            className="btn btn-primary me-2"
+                            onClick={() => this.changeSlide(-1)}>-1</button>
+                        <button
+                            className="btn btn-primary me-2"
+                            onClick={() => this.changeSlide(1)}>+1</button>
+                        <button
+                            className="btn btn-primary me-2"
+                            onClick={this.toggleAutoplay}>toggle autoplay</button>
+                    </div>
+                </div>
+            </Container>
+        )
+
 // const calcValue = ()=> {
 //             console.log('random');
 //             return Math.random() * (50-1) +1;
@@ -92,9 +96,10 @@ const Slider = (props) => {
             return countTotal(slide);
         }, [slide]);
 
-        const style = {
+        const style =
+            useMemo(()=>({
             color: slide > 4 ? 'red': 'black'
-        }
+            }), [slide])
 
         useEffect(()=>{
             console.log('styles!')
